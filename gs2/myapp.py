@@ -27,7 +27,7 @@ def get_data(id = None):
     data = r.json()
     print(data)
         
-# get_data()
+get_data()
 
 def post_data():
     data = {
@@ -61,11 +61,10 @@ def update_data():
 # update_data()
 
 def delete_data():
-    data = {'id' : 4}
-    headers = {'content-Type':'application/json'}
-    json_data = json.dumps(data)
-    r = requests.delete(url = URL, headers=headers, data = json_data)
-    data = r.json()
-    print(data)
-    
-delete_data()
+    id = 3
+    url = f"{URL}{id}" 
+    r = requests.delete(url=url)
+    print(r.status_code)
+    print(r.json())
+
+# delete_data()

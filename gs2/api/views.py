@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from rest_framework.response import Response
 from .models import Student
@@ -45,10 +45,9 @@ class StudentAPI(APIView):
         return Response(serializer.errors)   
     
     def delete(self, request, pk, format=None):
-        id = pk
-        stu = Student.objects.get(pk=id)
+        stu = get_object_or_404(Student, id=pk)
         stu.delete()
-        return Response({'msg':'Data Deleted'})
+        return Response({'msg': 'Data Deleted'}, status=status.HTTP_200_OK)
 
 
 
