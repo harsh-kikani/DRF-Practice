@@ -39,13 +39,27 @@
 #     filter_backends = [OrderingFilter]
 #     ordering_fields = ['name','city']
 
+# from django.shortcuts import render
+# from .serializers import StudentSerializer
+# from rest_framework.generics import ListAPIView
+# from .models import Student
+# from .mypaginations import MyPageNumberPagination
+
+# class StudentList(ListAPIView):
+#     queryset = Student.objects.all()
+#     serializer_class = StudentSerializer
+#     pagination_class = MyPageNumberPagination
+
+
 from django.shortcuts import render
 from .serializers import StudentSerializer
 from rest_framework.generics import ListAPIView
 from .models import Student
-from .mypaginations import MyPageNumberPagination
+from .mypaginations import MyCursorPagination
+
 
 class StudentList(ListAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    pagination_class = MyPageNumberPagination
+    # pagination_class = MyLimitOffsetPagination
+    pagination_class = MyCursorPagination
